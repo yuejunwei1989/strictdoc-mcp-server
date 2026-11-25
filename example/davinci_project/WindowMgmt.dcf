@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DAVINCIWORKSPACE>
+  <VersionInfo>
+    <DVCVersion>4.19.39</DVCVersion>
+  </VersionInfo>
+  <AdminData/>
+  <DaVinciWorkspaceConfiguration>
+    <InputFiles>
+      <InputFile uri="Arch/WindowMgmt.swc.arxml"/>
+      <InputFile uri="Arch/Mirror.swc.arxml"/>
+      <!-- 生成产物引用，应被排除 -->
+      <GeneratedFile uri="Output/GenData/generated.arxml"/>
+      <!-- 引用了但不存在：应进 missing -->
+      <InputFile uri="Arch/Variant_B.arxml"/>
+    </InputFiles>
+  </DaVinciWorkspaceConfiguration>
+</DAVINCIWORKSPACE>

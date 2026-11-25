@@ -1,0 +1,42 @@
+{
+ "name": "WindowMgmt",
+ "source": "/workspace/strictdoc-mcp/example/davinci_project/WindowMgmt.dcf",
+ "resolved_inputs": [
+  "/workspace/strictdoc-mcp/example/davinci_project/Arch/WindowMgmt.swc.arxml",
+  "/workspace/strictdoc-mcp/example/davinci_project/Arch/Mirror.swc.arxml"
+ ],
+ "missing_inputs": [
+  "Arch/Variant_B.arxml"
+ ],
+ "validation": {
+  "ok": true,
+  "returncode": 0,
+  "warnings": false,
+  "command": [
+   "/root/.codebuddy/artifact/davinci-mcp-server/tests/fake_bin/dvdevc",
+   "project",
+   "convert",
+   "--workspace-path=/workspace/strictdoc-mcp/example/davinci_project/WindowMgmt.dcf",
+   "--analysis-only"
+  ],
+  "stdout_tail": [
+   "Workspace conversion completed"
+  ],
+  "stderr_tail": []
+ },
+ "ok": true,
+ "output": "/workspace/strictdoc-mcp/example/davinci_project_sync/windowmgmt.sdoc",
+ "changed_vs_previous_run": false,
+ "stats": {
+  "compositions": 1,
+  "components": 3,
+  "interfaces": 2,
+  "arxml_files": 2
+ },
+ "symbols": [
+  "AntiPinch_Detect",
+  "MirrorHeater_Cyclic1s",
+  "WindowControl_Cyclic20ms",
+  "WindowControl_OnPinchCommand"
+ ]
+}

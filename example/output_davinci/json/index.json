@@ -1,0 +1,204 @@
+{
+    "_COMMENT": "Fields with _ are metadata. Fields without _ are the actual document/section/requirement/other content.",
+    "DOCUMENTS": [
+        {
+            "_NODE_TYPE": "DOCUMENT",
+            "UID": "SAD-windowmgmt",
+            "TITLE": "Software Architecture (WindowMgmt)",
+            "GRAMMAR": {
+                "ELEMENTS": [
+                    {
+                        "NODE_TYPE": "SECTION",
+                        "FIELDS": [
+                            {
+                                "TITLE": "UID",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            },
+                            {
+                                "TITLE": "LEVEL",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            },
+                            {
+                                "TITLE": "PREFIX",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            },
+                            {
+                                "TITLE": "TITLE",
+                                "REQUIRED": "True",
+                                "TYPE": "String"
+                            }
+                        ],
+                        "RELATIONS": []
+                    },
+                    {
+                        "NODE_TYPE": "TEXT",
+                        "FIELDS": [
+                            {
+                                "TITLE": "UID",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            },
+                            {
+                                "TITLE": "STATEMENT",
+                                "REQUIRED": "True",
+                                "TYPE": "String"
+                            }
+                        ],
+                        "RELATIONS": []
+                    },
+                    {
+                        "NODE_TYPE": "REQUIREMENT",
+                        "FIELDS": [
+                            {
+                                "TITLE": "UID",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            },
+                            {
+                                "TITLE": "LEVEL",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            },
+                            {
+                                "TITLE": "STATUS",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            },
+                            {
+                                "TITLE": "TAGS",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            },
+                            {
+                                "TITLE": "TITLE",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            },
+                            {
+                                "TITLE": "STATEMENT",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            },
+                            {
+                                "TITLE": "RATIONALE",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            },
+                            {
+                                "TITLE": "COMMENT",
+                                "REQUIRED": "False",
+                                "TYPE": "String"
+                            }
+                        ],
+                        "RELATIONS": [
+                            {
+                                "TYPE": "Parent"
+                            },
+                            {
+                                "TYPE": "File"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "NODES": [
+                {
+                    "_TOC": "1",
+                    "_NODE_TYPE": "REQUIREMENT",
+                    "UID": "SYNC-META-ARCH",
+                    "TITLE": "\u540c\u6b65\u8bf4\u660e",
+                    "STATEMENT": "\u672c\u6587\u4ef6\u7531 sync_davinci_arxml.py \u4ece ARXML\uff08WindowMgmt\uff09\u81ea\u52a8\u751f\u6210\uff0c\u5355\u5411\u540c\u6b65\uff0c\u8bf7\u52ff\u624b\u5de5\u7f16\u8f91\uff1b\u67b6\u6784\u4fee\u6539\u8bf7\u5728 DaVinci Developer \u4e2d\u8fdb\u884c\u540e\u91cd\u65b0\u540c\u6b65\u3002\n"
+                },
+                {
+                    "_TOC": "2",
+                    "_NODE_TYPE": "REQUIREMENT",
+                    "UID": "ARCH-windowmgmt-windowcomposition",
+                    "TITLE": "\u7ec4\u5408\u7ec4\u4ef6 WindowComposition",
+                    "STATEMENT": "WindowComposition \u7ec4\u5408 2 \u4e2a\u7ec4\u4ef6\uff0c1 \u6761\u88c5\u914d\u8fde\u63a5\u3002\n",
+                    "COMMENT": "ARXML: /WindowMgmt/WindowComposition (composition)\ncontains winCtrl (/WindowMgmt/WindowControl)\ncontains antiPinch (/WindowMgmt/AntiPinch)\nconn_pinch_cmd: WindowControl.pinchCommand => AntiPinch.pinchCommand\n"
+                },
+                {
+                    "_TOC": "3",
+                    "_NODE_TYPE": "REQUIREMENT",
+                    "UID": "ARCH-windowmgmt-windowcontrol",
+                    "TITLE": "\u7ec4\u4ef6 WindowControl",
+                    "STATEMENT": "WindowControl\uff08SW-COMPONENT-TYPE\uff09\uff1a1 \u4e2a\u7aef\u53e3\uff0c2 \u4e2a\u53ef\u8fd0\u884c\u5b9e\u4f53\u3002\n",
+                    "COMMENT": "ARXML: /WindowMgmt/WindowControl\nPort[P] pinchCommand -> /WindowMgmt/II_PINCH (SetPinchCommand)\n",
+                    "RELATIONS": [
+                        {
+                            "TYPE": "Parent",
+                            "VALUE": "ARCH-windowmgmt-windowcomposition"
+                        }
+                    ]
+                },
+                {
+                    "_TOC": "4",
+                    "_NODE_TYPE": "REQUIREMENT",
+                    "UID": "DES-windowcontrol-cyclic20ms",
+                    "TITLE": "\u53ef\u8fd0\u884c\u5b9e\u4f53 ru_cyclic",
+                    "STATEMENT": "ru_cyclic\uff08\u7b26\u53f7 WindowControl_Cyclic20ms\uff0c\u89e6\u53d1\uff1acyclic 0.02s\uff09\uff0c\u5b9e\u73b0\u4e8e\u7ec4\u4ef6 WindowControl\u3002\n",
+                    "COMMENT": "ARXML: /WindowMgmt/WindowControl/ib/ru_cyclic\nSYMBOL: WindowControl_Cyclic20ms\nEVENTS: cyclic 0.02s\n",
+                    "RELATIONS": [
+                        {
+                            "TYPE": "Parent",
+                            "VALUE": "ARCH-windowmgmt-windowcontrol"
+                        }
+                    ]
+                },
+                {
+                    "_TOC": "5",
+                    "_NODE_TYPE": "REQUIREMENT",
+                    "UID": "DES-windowcontrol-onpinchcommand",
+                    "TITLE": "\u53ef\u8fd0\u884c\u5b9e\u4f53 ru_on_cmd",
+                    "STATEMENT": "ru_on_cmd\uff08\u7b26\u53f7 WindowControl_OnPinchCommand\uff0c\u89e6\u53d1\uff1aoperation-invoked\uff09\uff0c\u5b9e\u73b0\u4e8e\u7ec4\u4ef6 WindowControl\u3002\n",
+                    "COMMENT": "ARXML: /WindowMgmt/WindowControl/ib/ru_on_cmd\nSYMBOL: WindowControl_OnPinchCommand\nEVENTS: operation-invoked\n",
+                    "RELATIONS": [
+                        {
+                            "TYPE": "Parent",
+                            "VALUE": "ARCH-windowmgmt-windowcontrol"
+                        }
+                    ]
+                },
+                {
+                    "_TOC": "6",
+                    "_NODE_TYPE": "REQUIREMENT",
+                    "UID": "ARCH-windowmgmt-antipinch",
+                    "TITLE": "\u7ec4\u4ef6 AntiPinch",
+                    "STATEMENT": "AntiPinch\uff08SW-COMPONENT-TYPE\uff09\uff1a1 \u4e2a\u7aef\u53e3\uff0c1 \u4e2a\u53ef\u8fd0\u884c\u5b9e\u4f53\u3002\n",
+                    "COMMENT": "ARXML: /WindowMgmt/AntiPinch\nPort[R] pinchCommand -> /WindowMgmt/II_PINCH (SetPinchCommand)\n",
+                    "RELATIONS": [
+                        {
+                            "TYPE": "Parent",
+                            "VALUE": "ARCH-windowmgmt-windowcomposition"
+                        }
+                    ]
+                },
+                {
+                    "_TOC": "7",
+                    "_NODE_TYPE": "REQUIREMENT",
+                    "UID": "DES-antipinch-detect",
+                    "TITLE": "\u53ef\u8fd0\u884c\u5b9e\u4f53 ru_pinch_detect",
+                    "STATEMENT": "ru_pinch_detect\uff08\u7b26\u53f7 AntiPinch_Detect\uff0c\u89e6\u53d1\uff1acyclic 0.02s\uff09\uff0c\u5b9e\u73b0\u4e8e\u7ec4\u4ef6 AntiPinch\u3002\n",
+                    "COMMENT": "ARXML: /WindowMgmt/AntiPinch/ib/ru_pinch_detect\nSYMBOL: AntiPinch_Detect\nEVENTS: cyclic 0.02s\n",
+                    "RELATIONS": [
+                        {
+                            "TYPE": "Parent",
+                            "VALUE": "ARCH-windowmgmt-antipinch"
+                        }
+                    ]
+                },
+                {
+                    "_TOC": "8",
+                    "_NODE_TYPE": "REQUIREMENT",
+                    "UID": "IF-windowmgmt-ii-pinch",
+                    "TITLE": "\u63a5\u53e3 II_PINCH",
+                    "STATEMENT": "II_PINCH\uff08CLIENT-SERVER-INTERFACE\uff09\uff1aSetPinchCommand\n",
+                    "COMMENT": "ARXML: /WindowMgmt/II_PINCH\n"
+                }
+            ]
+        }
+    ]
+}

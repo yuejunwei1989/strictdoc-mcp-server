@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>WindowMgmt</SHORT-NAME>
+      <ELEMENTS>
+
+        <COMPOSITION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>WindowComposition</SHORT-NAME>
+          <COMPONENTS>
+            <COMPONENT-PROTOTYPE>
+              <SHORT-NAME>winCtrl</SHORT-NAME>
+              <TYPE-TREF>/WindowMgmt/WindowControl</TYPE-TREF>
+            </COMPONENT-PROTOTYPE>
+            <COMPONENT-PROTOTYPE>
+              <SHORT-NAME>antiPinch</SHORT-NAME>
+              <TYPE-TREF>/WindowMgmt/AntiPinch</TYPE-TREF>
+            </COMPONENT-PROTOTYPE>
+          </COMPONENTS>
+          <ASSEMBLY-SW-CONNECTORS>
+            <ASSEMBLY-SW-CONNECTOR-PROTOTYPE>
+              <SHORT-NAME>conn_pinch_cmd</SHORT-NAME>
+              <PROVIDER-IREF>
+                <CONTEXT-COMPONENT-PROTOTYPE><COMPONENT-REF DEST="SW-COMPONENT-TYPE">/WindowMgmt/WindowControl</COMPONENT-REF></CONTEXT-COMPONENT-PROTOTYPE>
+                <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/WindowMgmt/WindowControl/pinchCommand</TARGET-P-PORT-REF>
+              </PROVIDER-IREF>
+              <REQUESTER-IREF>
+                <CONTEXT-COMPONENT-PROTOTYPE><COMPONENT-REF DEST="SW-COMPONENT-TYPE">/WindowMgmt/AntiPinch</COMPONENT-REF></CONTEXT-COMPONENT-PROTOTYPE>
+                <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/WindowMgmt/AntiPinch/pinchCommand</TARGET-R-PORT-REF>
+              </REQUESTER-IREF>
+            </ASSEMBLY-SW-CONNECTOR-PROTOTYPE>
+          </ASSEMBLY-SW-CONNECTORS>
+        </COMPOSITION-SW-COMPONENT-TYPE>
+
+        <SW-COMPONENT-TYPE>
+          <SHORT-NAME>WindowControl</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>pinchCommand</SHORT-NAME>
+              <PROVIDED-COM-SPEC>
+                <SERVER-COM-SPEC><OPERATION-IREF><CONTEXT-PORT-INTERFACE-REF DEST="CLIENT-SERVER-INTERFACE">/WindowMgmt/II_PINCH</CONTEXT-PORT-INTERFACE-REF></OPERATION-IREF></SERVER-COM-SPEC>
+              </PROVIDED-COM-SPEC>
+              <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/WindowMgmt/II_PINCH</PROVIDED-INTERFACE-TREF>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <INTERNAL-BEHAVIOR>
+              <SHORT-NAME>ib_win</SHORT-NAME>
+              <EVENTS>
+                <TIMING-EVENT>
+                  <SHORT-NAME>ev_cyclic_20ms</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/WindowMgmt/WindowControl/ib_win/ru_cyclic</START-ON-EVENT-REF>
+                  <PERIOD>0.02</PERIOD>
+                </TIMING-EVENT>
+                <OPERATION-INVOKED-EVENT>
+                  <SHORT-NAME>ev_pinch_cmd</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/WindowMgmt/WindowControl/ib_win/ru_on_cmd</START-ON-EVENT-REF>
+                  <OPERATION-IREF><CONTEXT-PORT-PROTOTYPE><PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/WindowMgmt/WindowControl/pinchCommand</PORT-PROTOTYPE-REF></CONTEXT-PORT-PROTOTYPE></OPERATION-IREF>
+                </OPERATION-INVOKED-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>ru_cyclic</SHORT-NAME>
+                  <SYMBOL>WindowControl_Cyclic20ms</SYMBOL>
+                  <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>ru_on_cmd</SHORT-NAME>
+                  <SYMBOL>WindowControl_OnPinchCommand</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </SW-COMPONENT-TYPE>
+
+        <SW-COMPONENT-TYPE>
+          <SHORT-NAME>AntiPinch</SHORT-NAME>
+          <PORTS>
+            <R-PORT-PROTOTYPE>
+              <SHORT-NAME>pinchCommand</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/WindowMgmt/II_PINCH</REQUIRED-INTERFACE-TREF>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <INTERNAL-BEHAVIOR>
+              <SHORT-NAME>ib_pinch</SHORT-NAME>
+              <EVENTS>
+                <TIMING-EVENT>
+                  <SHORT-NAME>ev_pinch_20ms</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/WindowMgmt/AntiPinch/ib_pinch/ru_pinch_detect</START-ON-EVENT-REF>
+                  <PERIOD>0.02</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>ru_pinch_detect</SHORT-NAME>
+                  <SYMBOL>AntiPinch_Detect</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </SW-COMPONENT-TYPE>
+
+        <PORT-INTERFACE>
+          <SHORT-NAME>II_PINCH</SHORT-NAME>
+          <IS-SERVICE>false</IS-SERVICE>
+          <OPERATIONS>
+            <CLIENT-SERVER-OPERATION>
+              <SHORT-NAME>SetPinchCommand</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE>
+                  <SHORT-NAME>cmd</SHORT-NAME>
+                  <TYPE-TREF>/WindowMgmt/uint8</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+            </CLIENT-SERVER-OPERATION>
+          </OPERATIONS>
+        </PORT-INTERFACE>
+
+        <DATA-TYPE-MAPPING-SET>
+          <SHORT-NAME>uint8</SHORT-NAME>
+        </DATA-TYPE-MAPPING-SET>
+
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

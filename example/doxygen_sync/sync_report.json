@@ -1,0 +1,27 @@
+{
+ "name": "WindowMgmt",
+ "ok": true,
+ "output": "/workspace/strictdoc-mcp/example/doxygen_sync/windowmgmt.sdoc",
+ "changed_vs_previous_run": false,
+ "stats": {
+  "functions": 3,
+  "files": 2,
+  "req_tags": 3
+ },
+ "functions": [
+  "window_ctrl_reverse",
+  "window_ctrl_sample_position",
+  "mirror_heater_enable"
+ ],
+ "req_map": {
+  "window_ctrl_reverse": [
+   "SWR-0002"
+  ],
+  "window_ctrl_sample_position": [
+   "SWR-0001"
+  ],
+  "mirror_heater_enable": [
+   "SWR-0003"
+  ]
+ }
+}

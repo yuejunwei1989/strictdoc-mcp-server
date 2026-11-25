@@ -1,0 +1,69 @@
+[DOCUMENT]
+TITLE: Software Detailed Design (WindowMgmt)
+UID: SDD-windowmgmt
+
+[REQUIREMENT]
+UID: SYNC-META-DOX
+TITLE: 同步说明
+STATEMENT: >>>
+本文件由 sync_doxygen.py 从 Doxygen XML（WindowMgmt）自动生成，单向同步，请勿手工编辑；代码注释修改后重新跑 Doxygen 与本工具。
+<<<
+
+[[SECTION]]
+TITLE: mirror_heater.c
+
+[REQUIREMENT]
+UID: DES-mirror-heater-enable
+TITLE: 加热使能判断
+STATEMENT: >>>
+加热使能判断
+<<<
+COMMENT: >>>
+Signature: int mirror_heater_enable(int ambient_temp_c)
+Source: src/mirror_heater.c:19
+Group: 车窗控制组件
+Visibility: public
+Param ambient_temp_c: 环境温度，单位摄氏度
+Return: 1 使能加热；0 关闭
+Verifies: SWR-0003
+<<<
+
+[[/SECTION]]
+
+[[SECTION]]
+TITLE: window_ctrl.h
+
+[REQUIREMENT]
+UID: DES-window-ctrl-reverse
+TITLE: 防夹触发后输出反向控制指令
+STATEMENT: >>>
+防夹触发后输出反向控制指令
+<<<
+COMMENT: >>>
+Signature: int window_ctrl_reverse(int position_cm, int dir_px)
+Source: src/window_ctrl.h:18
+Visibility: public
+Param position_cm: 当前车窗位置，单位 cm，有效范围 0-60
+Param dir_px: 反向运动方向脉冲数
+Return: 0 成功；-1 驱动故障
+Behavior: 检测到防夹条件后，按 100 ms 内的时限输出反向指令； 位置回退到触发点下方 5 cm 处停止。
+Verifies: SWR-0002
+<<<
+
+[REQUIREMENT]
+UID: DES-window-ctrl-sample-position
+TITLE: 车窗位置采样
+STATEMENT: >>>
+车窗位置采样
+<<<
+COMMENT: >>>
+Signature: int window_ctrl_sample_position(int raw_adc)
+Source: src/window_ctrl.h:27
+Visibility: public
+Param raw_adc: ADC 原始采样值
+Return: 换算后的位置，单位 cm
+Verifies: SWR-0001
+<<<
+
+[[/SECTION]]
+

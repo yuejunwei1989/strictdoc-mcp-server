@@ -1,0 +1,46 @@
+[DOCUMENT]
+TITLE: Software Requirements Specification
+UID: SWRS
+
+[[SECTION]]
+TITLE: 车窗控制
+
+[REQUIREMENT]
+UID: SWR-0001
+STATUS: Approved
+TITLE: 车窗升降控制
+STATEMENT: >>>
+软件应支持驾驶员通过开关控制四个车窗的升降。
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-0001
+
+[REQUIREMENT]
+UID: SWR-0002
+STATUS: Draft
+TITLE: 防夹反向响应时间
+STATEMENT: >>>
+软件应在检测到防夹触发后 100 ms 内输出反向控制指令。
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-0001
+
+[[/SECTION]]
+
+[[SECTION]]
+TITLE: 后视镜
+
+[REQUIREMENT]
+UID: SWR-0003
+STATUS: Approved
+TITLE: 后视镜加热
+STATEMENT: >>>
+软件应在环境温度低于 5 摄氏度时自动开启后视镜加热。
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SYS-0002
+
+[[/SECTION]]

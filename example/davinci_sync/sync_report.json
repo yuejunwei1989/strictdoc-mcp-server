@@ -1,0 +1,22 @@
+{
+  "name": "WindowMgmt",
+  "arxml": [
+    "/workspace/strictdoc-mcp/example/arxml/WindowMgmt.swc.arxml"
+  ],
+  "output": "/workspace/strictdoc-mcp/example/davinci_sync/windowmgmt.sdoc",
+  "content_sha256_16": "dc7b2468c24e2248",
+  "changed_vs_previous_run": false,
+  "stats": {
+    "compositions": 1,
+    "components": 2,
+    "runnables": 3,
+    "ports": 2,
+    "interfaces": 1,
+    "connectors": 1
+  },
+  "symbols": [
+    "WindowControl_Cyclic20ms",
+    "WindowControl_OnPinchCommand",
+    "AntiPinch_Detect"
+  ]
+}

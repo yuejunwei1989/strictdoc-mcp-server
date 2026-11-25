@@ -1,0 +1,107 @@
+[DOCUMENT]
+TITLE: Software Architecture (WindowMgmt)
+UID: SAD-windowmgmt
+
+[REQUIREMENT]
+UID: SYNC-META-ARCH
+TITLE: 同步说明
+STATEMENT: >>>
+本文件由 sync_davinci_arxml.py 从 ARXML（WindowMgmt）自动生成，单向同步，请勿手工编辑；架构修改请在 DaVinci Developer 中进行后重新同步。
+<<<
+
+[REQUIREMENT]
+UID: ARCH-windowmgmt-windowcomposition
+TITLE: 组合组件 WindowComposition
+STATEMENT: >>>
+WindowComposition 组合 2 个组件，1 条装配连接。
+<<<
+COMMENT: >>>
+ARXML: /WindowMgmt/WindowComposition (composition)
+contains winCtrl (/WindowMgmt/WindowControl)
+contains antiPinch (/WindowMgmt/AntiPinch)
+conn_pinch_cmd: WindowControl.pinchCommand => AntiPinch.pinchCommand
+<<<
+
+[REQUIREMENT]
+UID: ARCH-windowmgmt-windowcontrol
+TITLE: 组件 WindowControl
+STATEMENT: >>>
+WindowControl（SW-COMPONENT-TYPE）：1 个端口，2 个可运行实体。
+<<<
+COMMENT: >>>
+ARXML: /WindowMgmt/WindowControl
+Port[P] pinchCommand -> /WindowMgmt/II_PINCH (SetPinchCommand)
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: ARCH-windowmgmt-windowcomposition
+
+[REQUIREMENT]
+UID: DES-windowcontrol-cyclic20ms
+TITLE: 可运行实体 ru_cyclic
+STATEMENT: >>>
+ru_cyclic（符号 WindowControl_Cyclic20ms，触发：cyclic 0.02s），实现于组件 WindowControl。
+<<<
+COMMENT: >>>
+ARXML: /WindowMgmt/WindowControl/ib/ru_cyclic
+SYMBOL: WindowControl_Cyclic20ms
+EVENTS: cyclic 0.02s
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: ARCH-windowmgmt-windowcontrol
+
+[REQUIREMENT]
+UID: DES-windowcontrol-onpinchcommand
+TITLE: 可运行实体 ru_on_cmd
+STATEMENT: >>>
+ru_on_cmd（符号 WindowControl_OnPinchCommand，触发：operation-invoked），实现于组件 WindowControl。
+<<<
+COMMENT: >>>
+ARXML: /WindowMgmt/WindowControl/ib/ru_on_cmd
+SYMBOL: WindowControl_OnPinchCommand
+EVENTS: operation-invoked
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: ARCH-windowmgmt-windowcontrol
+
+[REQUIREMENT]
+UID: ARCH-windowmgmt-antipinch
+TITLE: 组件 AntiPinch
+STATEMENT: >>>
+AntiPinch（SW-COMPONENT-TYPE）：1 个端口，1 个可运行实体。
+<<<
+COMMENT: >>>
+ARXML: /WindowMgmt/AntiPinch
+Port[R] pinchCommand -> /WindowMgmt/II_PINCH (SetPinchCommand)
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: ARCH-windowmgmt-windowcomposition
+
+[REQUIREMENT]
+UID: DES-antipinch-detect
+TITLE: 可运行实体 ru_pinch_detect
+STATEMENT: >>>
+ru_pinch_detect（符号 AntiPinch_Detect，触发：cyclic 0.02s），实现于组件 AntiPinch。
+<<<
+COMMENT: >>>
+ARXML: /WindowMgmt/AntiPinch/ib/ru_pinch_detect
+SYMBOL: AntiPinch_Detect
+EVENTS: cyclic 0.02s
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: ARCH-windowmgmt-antipinch
+
+[REQUIREMENT]
+UID: IF-windowmgmt-ii-pinch
+TITLE: 接口 II_PINCH
+STATEMENT: >>>
+II_PINCH（CLIENT-SERVER-INTERFACE）：SetPinchCommand
+<<<
+COMMENT: >>>
+ARXML: /WindowMgmt/II_PINCH
+<<<
+

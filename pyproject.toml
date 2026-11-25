@@ -1,0 +1,20 @@
+[project]
+name = "strictdoc-mcp"
+version = "0.1.0"
+description = "Read-only MCP server exposing a StrictDoc JSON export (requirements, traceability, gap checks) to AI agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "mcp>=1.6",
+]
+
+[project.scripts]
+strictdoc-mcp = "strictdoc_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/strictdoc_mcp"]

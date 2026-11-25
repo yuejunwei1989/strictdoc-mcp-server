@@ -1,0 +1,13 @@
+PROJECT_NAME     = WindowMgmt
+INPUT            = src
+FILE_PATTERNS    = *.c *.h
+RECURSIVE        = YES
+EXTRACT_ALL      = NO
+EXTRACT_STATIC   = YES
+WARN_IF_UNDOCUMENTED = YES
+GENERATE_XML     = YES
+XML_OUTPUT       = build/doxygen/xml
+GENERATE_HTML    = NO
+GENERATE_LATEX   = NO
+QUIET            = YES
+OPTIMIZE_OUTPUT_FOR_C = YES

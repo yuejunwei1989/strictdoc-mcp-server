@@ -1,0 +1,51 @@
+[DOCUMENT]
+TITLE: Polarion Requirements (project DEMO)
+UID: POL-DEMO
+
+[REQUIREMENT]
+UID: SYNC-META
+TITLE: 同步说明
+STATEMENT: >>>
+本文件由 sync_polarion.py 从 Polarion 项目 DEMO 自动生成，单向同步，请勿手工编辑；修改请回到 Polarion 后重新同步。
+<<<
+
+[REQUIREMENT]
+UID: DEMO-1
+STATUS: draft
+TITLE: Power supply requirement
+STATEMENT: >>>
+The unit shall provide 24 V.
+<<<
+COMMENT: >>>
+Polarion: DEMO-1 type=requirement updated=2024-01-02T10:00:00Z
+safetyLevel: "ASIL-B"
+severity: "major"
+<<<
+
+[REQUIREMENT]
+UID: DEMO-2
+STATUS: inProgress
+TITLE: Implement power supply
+STATEMENT: >>>
+Implement power supply
+<<<
+COMMENT: >>>
+Polarion: DEMO-2 type=task updated=2024-01-02T10:00:00Z
+links: implements -> DEMO-1
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: DEMO-1
+
+[REQUIREMENT]
+UID: DEMO-3
+STATUS: draft
+TITLE: Loose connector
+STATEMENT: >>>
+Loose connector
+<<<
+COMMENT: >>>
+Polarion: DEMO-3 type=defect updated=2024-01-02T10:00:00Z
+severity: "minor"
+<<<
+

@@ -1,0 +1,19 @@
+[DOCUMENT]
+TITLE: Software Requirements
+UID: SWRS
+
+[REQUIREMENT]
+UID: SWR-0001
+STATUS: Approved
+TITLE: 防夹反向响应时间
+STATEMENT: >>>
+软件应在检测到防夹触发后 100 ms 内输出反向控制指令。
+<<<
+
+[REQUIREMENT]
+UID: SWR-0002
+STATUS: Approved
+TITLE: 车窗位置采样精度
+STATEMENT: >>>
+软件位置采样误差应不超过 1 cm。
+<<<

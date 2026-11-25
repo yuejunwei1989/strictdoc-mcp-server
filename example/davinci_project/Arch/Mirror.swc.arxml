@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>Mirror</SHORT-NAME>
+      <ELEMENTS>
+        <SW-COMPONENT-TYPE>
+          <SHORT-NAME>MirrorHeater</SHORT-NAME>
+          <INTERNAL-BEHAVIORS>
+            <INTERNAL-BEHAVIOR>
+              <SHORT-NAME>ib_heat</SHORT-NAME>
+              <EVENTS>
+                <TIMING-EVENT>
+                  <SHORT-NAME>ev_heat_1s</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/Mirror/MirrorHeater/ib_heat/ru_heat</START-ON-EVENT-REF>
+                  <PERIOD>1.0</PERIOD>
+                </TIMING-EVENT>
+              </EVENTS>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>ru_heat</SHORT-NAME>
+                  <SYMBOL>MirrorHeater_Cyclic1s</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+            </INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </SW-COMPONENT-TYPE>
+        <PORT-INTERFACE>
+          <SHORT-NAME>II_HEATER</SHORT-NAME>
+          <OPERATIONS>
+            <CLIENT-SERVER-OPERATION><SHORT-NAME>SetHeater</SHORT-NAME></CLIENT-SERVER-OPERATION>
+          </OPERATIONS>
+        </PORT-INTERFACE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

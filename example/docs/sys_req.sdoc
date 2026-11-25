@@ -1,0 +1,19 @@
+[DOCUMENT]
+TITLE: System Requirements Specification
+UID: SYRS
+
+[REQUIREMENT]
+UID: SYS-0001
+STATUS: Approved
+TITLE: 车窗系统控制
+STATEMENT: >>>
+系统应支持四窗升降与防夹保护。
+<<<
+
+[REQUIREMENT]
+UID: SYS-0002
+STATUS: Approved
+TITLE: 后视镜系统
+STATEMENT: >>>
+系统应提供后视镜加热功能。
+<<<

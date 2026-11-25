@@ -1,0 +1,13 @@
+{
+  "project": "DEMO",
+  "query": "",
+  "work_items": 3,
+  "ids": [
+    "DEMO-1",
+    "DEMO-2",
+    "DEMO-3"
+  ],
+  "output": "/workspace/strictdoc-mcp/example/docs/polarion/DEMO.sdoc",
+  "content_sha256_16": "a2b05147aa4ebafb",
+  "changed_vs_previous_run": true
+}

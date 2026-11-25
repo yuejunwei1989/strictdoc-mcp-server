@@ -1,0 +1,29 @@
+[DOCUMENT]
+TITLE: Software Architecture
+UID: SADS
+
+[REQUIREMENT]
+UID: ARCH-0012
+STATUS: Approved
+TITLE: 车窗控制组件
+STATEMENT: >>>
+车窗控制组件提供升降与防夹功能，作为独立 SWC 实现。
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: SWR-0001
+- TYPE: Parent
+  VALUE: SWR-0002
+
+[REQUIREMENT]
+UID: DES-0101
+STATUS: Draft
+TITLE: 防夹检测函数
+STATEMENT: >>>
+anti_pinch_detect 以 20ms 周期采样窗口电流。
+<<<
+RELATIONS:
+- TYPE: Parent
+  VALUE: ARCH-0012
+- TYPE: Parent
+  VALUE: SWR-0003
